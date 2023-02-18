@@ -13,14 +13,20 @@ const colors = [blue, red, green, orange, yellow, purple];
 
 function App() {
 	const [currentCandies, setCurrentCandies] = useState([]);
+	const [score, setScore] = useState(0);
 
 	useEffect(() => {
 		setCurrentCandies(generateBoard(width, colors));
 	}, []);
 
 	return (
+		// this is a comment
+
 		<div className=''>
+			<h2 className='text-center text-3xl mb-4'>Score is {score}</h2>
 			<Board
+				score={score}
+				setScore={setScore}
 				setCurrentCandies={setCurrentCandies}
 				currentCandies={currentCandies}
 				colors={colors}

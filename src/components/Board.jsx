@@ -2,7 +2,13 @@ import React, { useEffect, useState } from "react";
 import checkMatchingCandies from "../services/checkMatchingCandies";
 import Candy from "./Candy";
 
-const Board = ({ currentCandies, setCurrentCandies, colors }) => {
+const Board = ({
+	currentCandies,
+	setCurrentCandies,
+	colors,
+	score,
+	setScore,
+}) => {
 	const [candyBeingDragged, setCandyBeingDragged] = useState(null);
 	const [candyBeingReplaced, setCandyBeingReplaced] = useState(null);
 
@@ -11,7 +17,13 @@ const Board = ({ currentCandies, setCurrentCandies, colors }) => {
 
 		if (currentCandies.length) {
 			timer = setInterval(() => {
-				checkMatchingCandies(currentCandies, setCurrentCandies, 8, colors);
+				checkMatchingCandies(
+					currentCandies,
+					setCurrentCandies,
+					8,
+					colors,
+					setScore
+				);
 				// console.log(currentCandies);
 			}, 100);
 		}

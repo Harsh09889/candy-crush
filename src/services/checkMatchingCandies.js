@@ -4,7 +4,8 @@ export default function checkMatchingCandies(
 	currentCandies,
 	setCurrentCandies,
 	width,
-	colors
+	colors,
+	setScore
 ) {
 	const checkFourInRow = () => {
 		let flag = false;
@@ -14,9 +15,10 @@ export default function checkMatchingCandies(
 					currentCandies &&
 					currentCandies[i][j] === currentCandies[i][j + 1] &&
 					currentCandies[i][j + 1] === currentCandies[i][j + 2] &&
-					currentCandies[i][j + 2] === currentCandies[i][j + 3]
+					currentCandies[i][j + 2] === currentCandies[i][j + 3] &&
+					currentCandies[i][j] !== blank
 				) {
-					console.log("Matched", i, j);
+					setScore((p) => p + 4);
 					flag = true;
 					setCurrentCandies((prevCandies) => {
 						const newerCandies = prevCandies.map((candyRow, row) =>
@@ -43,9 +45,10 @@ export default function checkMatchingCandies(
 				if (
 					currentCandies &&
 					currentCandies[i][j] === currentCandies[i][j + 1] &&
-					currentCandies[i][j + 1] === currentCandies[i][j + 2]
+					currentCandies[i][j + 1] === currentCandies[i][j + 2] &&
+					currentCandies[i][j] !== blank
 				) {
-					console.log("Matched", i, j);
+					setScore((p) => p + 3);
 					flag = true;
 					setCurrentCandies((prevCandies) => {
 						const newerCandies = prevCandies.map((candyRow, row) =>
@@ -73,7 +76,7 @@ export default function checkMatchingCandies(
 					currentCandies[i + 1][j] === currentCandies[i + 2][j] &&
 					currentCandies[i + 2][j] === currentCandies[i + 3][j]
 				) {
-					console.log("Matched", i, j);
+					setScore((p) => p + 4);
 					flag = true;
 					setCurrentCandies((prevCandies) => {
 						const newerCandies = [];
@@ -108,8 +111,10 @@ export default function checkMatchingCandies(
 				if (
 					currentCandies &&
 					currentCandies[i][j] === currentCandies[i + 1][j] &&
-					currentCandies[i + 1][j] === currentCandies[i + 2][j]
+					currentCandies[i + 1][j] === currentCandies[i + 2][j] &&
+					currentCandies[i][j] !== blank
 				) {
+					setScore((p) => p + 3);
 					flag = true;
 					setCurrentCandies((prevCandies) => {
 						const newerCandies = [];
